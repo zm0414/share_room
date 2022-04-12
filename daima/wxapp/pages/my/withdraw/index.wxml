@@ -1,0 +1,19 @@
+<!--pages/my/withdraw/index.wxml-->
+<view class="container">
+  <form bindsubmit="bindSave">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">金额</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="amount" class="weui-input" placeholder="金额" />
+        </view>
+      </view>
+    </view>
+    <view class="weui-btn-area">
+      <button type="primary" formType="submit">保存</button>
+    </view>
+
+  </form>
+</view>

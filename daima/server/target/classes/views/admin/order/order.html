@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>订单管理</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/css/all-skins.min.css">
+  <link rel="stylesheet" href="/plugins/bootstrap-table/bootstrap-table.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div id="app" class="wrapper" v-cloak>
+
+  <main-header></main-header>
+  <main-sidebar></main-sidebar>
+  <!-- =============================================== -->
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <content-header title="订单管理"></content-header>
+
+    <!-- Main content -->
+    <section class="content">
+	<div v-show="showList">
+		<div class="box">
+			<div class="box-header with-border">
+              <h3 class="box-title">列表</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+				<div class="grid-btn">
+					<div class="form-group col-sm-2">
+						<input type="text" class="form-control" v-model="q.orderNumber" @keyup.enter="query" placeholder="订单编号">
+					</div>
+					<a class="btn btn-default" @click="query">查询</a>
+					<a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+				</div>
+			    <table id="table"></table>
+			</div>
+		</div>
+    </div>
+    
+    <div v-show="!showList">
+    	<div class="row">
+    		<div class="col-sm-6">
+    			<div class="box">
+					<div class="box-header with-border">
+		              <h3 class="box-title">订单信息</h3>
+		            </div><!-- /.box-header -->
+		            <div class="box-body">
+						<form class="form-horizontal">
+							<div class="form-group">
+							   	<div class="col-sm-2 control-label">订单编号</div>
+							   	<div class="col-sm-7">
+							      <div class="checkbox">
+							   	  	<label>
+							   	  		{{order.orderNumber}}
+							   	  	</label>
+							   	  </div>
+							    </div>
+							</div>
+							<div class="form-group">
+							   	<div class="col-sm-2 control-label">订单金额</div>
+							   	<div class="col-sm-7">
+							      <div class="checkbox">
+							   	  	<label>
+							   	  		{{order.totalAmount}}
+							   	  	</label>
+							   	  </div>
+							    </div>
+							</div>
+							<div class="form-group">
+							   	<div class="col-sm-2 control-label">订单状态</div>
+							   	<div class="col-sm-7">
+							      <div class="checkbox">
+							   	  	<label v-if="order.orderStatus == 0">
+							   	  		已取消
+							   	  	</label>
+							   	  	<label v-if="order.orderStatus == 1">
+							   	  		待付款
+							   	  	</label>
+							   	  	<label v-if="order.orderStatus == 2">
+							   	  		已完成
+							   	  	</label>
+							   	  </div>
+							    </div>
+							</div>
+							<div class="form-group">
+							   	<div class="col-sm-2 control-label">下单时间</div>
+							   	<div class="col-sm-7">
+							      <div class="checkbox">
+							   	  	<label>
+							   	  		{{order.createTime}}
+							   	  	</label>
+							   	  </div>
+							    </div>
+							</div>
+						</form>
+					</div>
+				</div>
+    		</div>
+    		<div class="col-sm-6" v-if="order.orderShipment">
+	    		<div class="box">
+				<div class="box-header with-border">
+	              <h3 class="box-title">收货地址</h3>
+	            </div><!-- /.box-header -->
+	            <div class="box-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+						   	<div class="col-sm-2 control-label">联系人</div>
+						   	<div class="col-sm-7">
+						   	  <div class="checkbox">
+						   	  	<label>
+						   	  		{{order.orderShipment.contacts}}
+						   	  	</label>
+						   	  </div>
+						    </div>
+						</div>
+						<div class="form-group">
+						   	<div class="col-sm-2 control-label">手机</div>
+						   	<div class="col-sm-7">
+						      <div class="checkbox">
+						   	  	<label>
+						   	  		{{order.orderShipment.mobile}}
+						   	  	</label>
+						   	  </div>
+						    </div>
+						</div>
+						<div class="form-group">
+						   	<div class="col-sm-2 control-label">省/市/区</div>
+						   	<div class="col-sm-7">
+						   	  <div class="checkbox">
+						   	  <label>
+						      {{order.orderShipment.provinceName}}/{{order.orderShipment.cityName}}/{{order.orderShipment.districtName}}
+						      </label>
+						      </div>
+						    </div>
+						</div>
+						<div class="form-group">
+						   	<div class="col-sm-2 control-label">详细地址</div>
+						   	<div class="col-sm-7">
+						      <div class="checkbox">
+						   	  	<label>
+						   	  		{{order.orderShipment.address}}
+						   	  	</label>
+						   	  </div>
+						    </div>
+						</div>
+					</form>
+				</div>
+			</div>
+    		</div>
+    	</div>
+    
+    	<div class="box">
+			<div class="box-header with-border">
+              <h3 class="box-title">订单房间</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>房间图片</th>
+							<th>房间名称</th>
+							<th>价格</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="orderRoom in order.orderRoomList">
+							<td>
+								<img alt="" :src="orderRoom.picUrl" width="100px" height="100px">
+							</td>
+							<td>{{orderRoom.roomName}}</td>
+							<td>{{orderRoom.price}}</td>
+						</tr>
+					</tbody>
+				</table>
+				
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="box-header with-border">
+              <h3 class="box-title">订单座位</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>座位号</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="orderSeat in order.orderSeatList">
+							<td>{{orderSeat.seatName}}</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<br>
+				<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+			</div>
+		</div>
+	</div>
+	</section>
+	</div>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/vue.min.js"></script>
+<script src="/js/router.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/plugins/layer/layer.js"></script>
+<script src="/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/admin/components.js"></script>
+<script src="/js/admin/common.js"></script>
+<script src="/js/admin/order/order.js"></script>
+</body>
+</html>

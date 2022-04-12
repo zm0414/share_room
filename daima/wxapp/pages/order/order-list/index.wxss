@@ -1,0 +1,233 @@
+page{
+  background: #f7f7f7
+}
+
+.weui-navbar__slider {
+  width: 57.6px;
+}
+
+.weui-tab .weui-navbar{
+  background: #fff;
+}
+
+.weui-navbar__slider {
+  background-color: #34c0ee;
+}
+
+.weui-navbar__item.weui-bar__item_on {
+  color: #34c0ee;
+}
+
+.no-order {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  top: 88rpx;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding-top: 203rpx;
+  background-color: #f7f7f7;
+}
+
+.no-order-img {
+  width: 81rpx;
+  height: 96rpx;
+  margin-bottom: 31rpx;
+}
+
+.no-order .text {
+  font-size: 28rpx;
+  color: #999;
+  text-align: center;
+}
+
+.order-list {
+  width: 100%;
+  background: #fff;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.order-list .a-order {
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1rpx solid #eee;
+  margin-bottom: 20rpx;
+}
+
+.order-list .a-order .order-date {
+  padding: 0 30rpx;
+  height: 88rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  color: #000;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
+}
+
+.order-list .a-order .order-date .red {
+  font-size: 26rpx;
+  color: #e64340;
+}
+
+.goods-img-container {
+  height: 180rpx;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.goods-img-container .img-box {
+  width: 120rpx;
+  height: 120rpx;
+  overflow: hidden;
+  margin-right: 20rpx;
+  background-color: #f7f7f7;
+  display: inline-block;
+}
+
+.order-list .a-order .price-box {
+  position: relative;
+  width: 720rpx;
+  height: 100rpx;
+  margin-left: 30rpx;
+  box-sizing: border-box;
+  padding: 20rpx 30rpx 20rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 26rpx;
+}
+
+.order-list .a-order .price-box .total-price {
+  font-size: 26rpx;
+  color: #e64340;
+}
+
+.a-order .price-box .cancel-btn {
+  border: 1rpx solid #ccc;
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+}
+
+.a-order .price-box .topay-btn {
+  border: 1px solid #e64340;
+  color: #e64340;
+}
+
+.goods-info {
+  border-bottom: 1rpx solid #eee;
+  padding: 15rpx;
+  align-items: center;
+}
+
+.goods-info image {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.goods-title {
+  font-size: 30rpx;
+  margin-bottom: 6rpx;
+}
+
+.goods-author {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 6rpx;
+}
+
+.order-time {
+  font-size: 28rpx;
+  color: #515151;
+  padding: 10rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.flex-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15rpx;
+}
+
+.stock {
+  font-size: 30rpx;
+  color: #ef8203;
+}
+
+.order-list .btn {
+  border-radius: 50rpx;
+}
+
+.info {
+  flex: 1;
+  margin-left: 15rpx;
+}
+
+.syt {
+  font-size: 28rpx;
+  color: #ef8203;
+  flex: 1;
+  margin-right: 10rpx;
+}
+
+.btn-yxj {
+  font-size: 32rpx;
+  color: #fff;
+  background: #999;
+  padding: 10rpx;
+  border-radius: 20%;
+}
+
+.weui-navbar__item {
+  padding: 20rpx 0;
+}
+
+.option {
+  text-align: right;
+  padding: 20rpx;
+  align-items: center
+}
+
+button[plain] {
+  border: 1px solid #34c0ee;
+  color: #34c0ee;
+  font-weight: normal;
+  font-size: 32rpx !important;
+}
+
+.btn-off {
+  border: 1px solid #AAAAAA !important;
+  color: #AAAAAA !important;
+  border-radius: 50rpx;
+}
+
+.btn-cancel{
+  border: 1px solid #e64340 !important;
+  color: #e64340 !important;
+  border-radius: 50rpx;
+  margin-right: 10rpx;
+}
+
+.book-no {
+  text-align: center;
+  padding: 40rpx;
+}
+
+.book-no image {
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 20rpx
+}
+
+.book-no .label {
+  color: #8a8a8a;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+}
+
+.logistics{
+  margin-right: 10rpx;
+}

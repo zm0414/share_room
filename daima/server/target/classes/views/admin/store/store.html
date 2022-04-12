@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>店铺</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@2.3.8/dist/css/AdminLTE.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.11.1/dist/bootstrap-table.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@2.3.8/dist/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@2.3.8/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="/plugins/jqfileupload/css/jquery.fileupload.css">
+<link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div id="app" v-cloak class="wrapper">
+  <main-header></main-header>
+  <main-sidebar></main-sidebar>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <content-header title="店铺管理"></content-header>
+    <!-- Main content -->
+    <section class="content">
+	<div v-show="showList">
+		<div class="box">
+			<div class="box-header with-border">
+              <h3 class="box-title">列表</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+				<div class="form-group">
+					<div class="form-group col-md-2">
+						<input type="text" class="form-control" v-model="q.storeName" @keyup.enter="query" placeholder="店铺名称">
+					</div>
+					<a class="btn btn-default" @click="query">查询</a>
+					<a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+					<a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+					<a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+				</div>
+			    <table id="table"></table>
+			</div>
+		</div>	
+    </div>
+    
+    <div v-show="!showList">
+		<div class="box">
+			<div class="box-header with-border">
+              <h3 class="box-title">{{title}}</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+		<form class="form-horizontal">
+			<div class="form-group">
+			   	<div class="col-sm-2 control-label">LOGO</div>
+			   	<div class="col-sm-7">
+				    <span class="btn btn-success fileinput-button">
+				        <i class="glyphicon glyphicon-plus"></i>
+				        <span>选择图片...</span>
+				        <input id="fileupload" type="file" name="file" multiple>
+				    </span>
+				    <br>
+				    <div id="files" class="files">
+				    	<div>
+				    		<img id="picUrl" alt="" width="50px" v-bind:src="store.picUrl">
+				    		<input name="picUrl" type="hidden" v-model="store.picUrl"/>
+				    	</div>
+				    </div>
+			    </div>
+			    
+			</div>
+			<div class="form-group">
+			   	<div class="col-sm-2 control-label">店铺名称</div>
+			   	<div class="col-sm-7">
+			      <input type="text" class="form-control" v-model="store.storeName" placeholder="店铺名称"/>
+			    </div>
+			</div>
+			<div class="form-group">
+			   	<div class="col-sm-2 control-label">地点</div>
+			   	<div class="col-sm-7">
+			      <input type="text" class="form-control" v-model="store.address" placeholder="地点" />
+			    </div>
+			</div>
+			
+			<div class="form-group" hidden="true">
+				<div class="col-sm-2 control-label">坐标</div>
+			   	<div class="col-sm-7">
+					<div id="allmap" style="height: 400px"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 control-label">状态</div> 
+				<div class="col-sm-7">
+					<label class="radio-inline">
+					  <input type="radio" name="status" value="0" v-model="store.status"/> 停业
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="status" value="1" v-model="store.status"/> 在业
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+			   	<div class="col-sm-2 control-label">排序</div>
+			   	<div class="col-sm-7">
+			      <input type="text" class="form-control" v-model="store.sort" placeholder="排序"/>
+			    </div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 control-label"></div> 
+				<input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+				&nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+			</div>
+		</form>
+		</div>
+	</div>
+	</div>
+	</section>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="/plugins/layer/layer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.2.6/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.11.1/dist/bootstrap-table.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.11.1/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+
+<script src="/plugins/jqfileupload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/plugins/jqfileupload/js/jquery.fileupload.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/admin/components.js"></script>
+<script src="/js/admin/common.js"></script>
+<script src="/js/admin/store/store.js"></script>
+<script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=7570HwPBQyVdHl8GsG8TDf7zVmgczMKH"></script>
+<script type="text/javascript">
+$(function(){
+	// Change this to the location of your server-side upload handler:
+    var url = "/api/fileupload/upload";
+    $('#fileupload').fileupload({
+        url: url,
+        dataType: 'json',
+        acceptFileTypes:  /(\.|\/)(gif|jpe?g|png)$/i,
+        maxFileSize: 10240,
+        done: function (e, data) {
+            if(data.result.code == 0){
+                $("#picUrl").attr("src", data.result.url);
+                vm.store.picUrl = data.result.url;
+            }
+        }
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+})
+
+</script>
+</body>
+</html>

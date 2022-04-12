@@ -1,0 +1,133 @@
+/* pages/seat/seat.wxss */
+.room{
+  background: #fff;
+  padding: 20rpx;
+}
+
+.date-time {
+  padding-top: 10rpx;
+  background-color: #fff;
+}
+
+.checked {
+  background: #eee;
+}
+
+.time {
+  padding: 5rpx;
+  margin: 7rpx 4rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
+  text-align: center;
+  border: rgb(253, 252, 252) 1rpx solid;
+}
+
+.time-tiles {
+  font-size: 24rpx;
+  padding: 12rpx 0;
+}
+
+.time_A {
+  padding-top: 26rpx;
+  border: #fff 1rpx solid;
+}
+
+.gym-name {
+  font-size: 28rpx;
+  text-align: center;
+  width: 105rpx;
+  display: inline-block;
+  padding-top: 12rpx;
+  padding-bottom: 12rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+.scroll-view_H {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.appoint-time {
+  width: 136rpx;
+  height: 136rpx;
+  text-align: center;
+  background: #fff;
+  display: inline-block;
+  vertical-align: middle;
+  border-right: 1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
+}
+
+.appoint-time .info {
+  height: 136rpx;
+  width: 136rpx;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  background: #f7f7f7;
+  position: relative;
+}
+
+.appoint-time .info.checked {
+  background: #fff;
+}
+
+.appoint-time .info.checked::after {
+  background-color: #8bc34a;
+  width: 136rpx;
+  height: 4rpx;
+  bottom: 0;
+  left: 0;
+  content: "";
+  position: absolute;
+}
+
+.appoint-time:last-child {
+  border-right: none;
+}
+
+.appoint-time .week {
+  font-size: 28rpx;
+}
+
+.appoint-time .day {
+  font-size: 24rpx;
+}
+
+.money-item {
+  display: inline-block;
+  width: 105rpx;
+}
+
+.seat-list{
+  width: 250rpx;
+  padding: 20rpx;
+  float: left;
+}
+
+.seat{
+  border-radius: 10rpx;
+  border: 2rpx solid #ddd;
+  padding: 10rpx;
+  text-align: center;
+}
+
+.room-name{
+  font-size: 32rpx;
+}
+
+.store-name{
+  font-size: 36rpx;
+}
+
+.weui-grids {
+  border: none;
+  width:750rpx;
+}
+
+.weui-grid {
+  border: none;
+}

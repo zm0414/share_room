@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wfuhui.modules.order.dao.OrderRoomDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wfuhui.modules.order.entity.OrderRoomEntity" id="orderRoomMap">
+        <result property="id" column="id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="roomId" column="room_id"/>
+        <result property="roomName" column="room_name"/>
+        <result property="num" column="num"/>
+        <result property="picUrl" column="pic_url"/>
+        <result property="seatNo" column="seat_no"/>
+        <result property="seatId" column="seat_id"/>
+        <result property="price" column="price"/>
+    </resultMap>
+
+	<select id="queryObject" resultType="com.wfuhui.modules.order.entity.OrderRoomEntity">
+		select * from seat_order_room where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="com.wfuhui.modules.order.entity.OrderRoomEntity">
+		select * from seat_order_room
+		
+		<where>
+			<if test="orderId != null">
+				order_id = ${orderId}
+			</if>
+		</where>
+		
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from seat_order_room 
+		<where>
+			<if test="orderId != null">
+				order_id = ${orderId}
+			</if>
+		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.wfuhui.modules.order.entity.OrderRoomEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into seat_order_room
+		(
+			`order_id`, 
+			`room_id`,
+			`room_name`,
+			`num`,
+			`pic_url`,
+			`seat_no`,
+			`seat_id`,
+			`price`
+		)
+		values
+		(
+			#{orderId}, 
+			#{roomId},
+			#{roomName},
+			#{num},
+			#{picUrl},
+			#{seatNo},
+			#{seatId},
+			#{price}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.wfuhui.modules.order.entity.OrderRoomEntity">
+		update seat_order_room 
+		<set>
+			<if test="orderId != null">`order_id` = #{orderId}, </if>
+			<if test="roomId != null">`room_id` = #{roomId}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from seat_order_room where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from seat_order_room where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

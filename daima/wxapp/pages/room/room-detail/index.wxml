@@ -1,0 +1,57 @@
+<view class="container">
+  <view class="room">
+    <image class='pic' mode="scaleToFill" src='{{room.picUrl}}'></image>
+    <view class='weui-flex__item book-info'>
+      <view class='weui-flex stock'>
+        <view class="weui-flex__item room-title">{{room.roomName}}</view>
+        <view class='room-stock' hidden="true">剩余{{room.stock}}</view>
+      </view>
+      <view class='room-title-en'></view>
+      <view class='room-item'>店铺：{{room.store.storeName}}</view>
+    </view>
+  </view>
+
+  <scroll-view class="scroll-view_H" scroll-x>
+    <view class='appoint-time' data-date="{{item.date}}" wx:for="{{dates}}" wx:key="*this" bindtap='appoint'>
+      <view class='info'>
+        <view class='week'>{{item.week}}</view>
+        <view class="day">{{item.day}}</view>
+        <view class='btn'>预定</view>
+      </view>
+    </view>
+  </scroll-view>
+  
+  <view class="block">
+    <view class='title'>简介</view>
+    <view class="room-info">
+      <rich-text nodes="{{room.describe}}"></rich-text>
+    </view>
+  </view>
+
+  <view class="block">
+    <view></view>
+  </view>
+
+  <view class="block">
+    <view class='title'>评价</view>
+    <view class='room-info'>
+      <view class='list-item' wx:for="{{evaluationList}}" wx:key="index">
+        <view class='weui-flex user-info'>
+          <image src='{{item.member.avatarUrl}}'></image>
+          <view class="info">
+            <view class='nick-name'>{{item.member.nickName}}</view>
+            <view class='create-time'>{{item.createTime}}</view>
+          </view>
+        </view>
+        <view class='content'>
+          {{item.content}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer-box" hidden="true">
+    <view class="weui-flex__item join-shop-cart" data-id='{{room.id}}' hidden="true">点击收藏</view>
+    <view class="weui-flex__item now-buy" bindtap="tobuy" data-id='{{room.id}}'>立即选座</view>
+  </view>
+</view>

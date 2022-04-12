@@ -1,0 +1,43 @@
+<wxs module="util" src="../../../utils/util.wxs"></wxs>
+<view class="container">
+  <view class="weui-tab">
+    <view class="weui-navbar">
+      <block wx:for="{{tabs}}" wx:key="*this">
+        <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+          <view class="weui-navbar__title">{{item}}</view>
+        </view>
+      </block>
+      <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+    </view>
+    <view class="weui-tab__panel">
+      <view class="weui-tab__content">
+        <view class="book-no" hidden="{{orderList.length != 0}}">
+          <image src='/images/no-order.png'></image>
+          <view class="label">
+            暂无订单
+          </view>
+        </view>
+        <view class="order-list" hidden="{{orderList.length > 0 ? false : true}}" wx:for="{{orderList}}" wx:key="*this">
+          <view class='order-time'>订单编号：{{item.orderNumber}}</view>
+          <view class='order-time'>下单时间：{{util.formatTimestamp(item.createTime)}}</view>
+          <view class="weui-flex goods-info" wx:for="{{item.orderRoomList}}" wx:for-item="room" wx:key="index">
+            <image src="{{room.picUrl}}" class="image" mode='scaleToFill' />
+            <view class="info">
+              <view class="goods-title">{{room.roomName}}</view>
+              <view class="goods-author" wx:for-item="seat" wx:for="{{item.orderSeatList}}">{{seat.seatName}}</view>
+            </view>
+          </view>
+          <view class="weui-flex option">
+            <view class="syt">￥{{item.totalAmount}}</view>
+            <button class="btn-cancel" data-id='{{item.id}}' data-ordernum='{{item.orderNum}}' data-totalamount="{{item.totalAmount}}" size="mini" plain="true" wx:if="{{item.orderStatus == 1}}" bindtap='cancel'>取消</button>
+            <button class="btn" data-id='{{item.id}}' data-ordernum='{{item.orderNum}}' data-totalamount="{{item.totalAmount}}" size="mini" plain="true" wx:if="{{item.orderStatus == 1}}" bindtap='toPay'>支付</button>
+            <button data-id='{{item.id}}' class="btn logistics" size="mini" plain="true" wx:if="{{item.orderStatus == 3 && item.distributionType == 1}}" bindtap="logistics">物流</button>
+            <button class="btn-cancel" data-id='{{item.id}}' data-ordernum='{{item.orderNumber}}' size="mini" plain="true" wx:if="{{item.orderStatus == 2}}" bindtap='confirm'>完成</button>
+            <button class="btn-off" size="mini" plain="true" wx:if="{{item.orderStatus == 0}}">已取消</button>
+            <button class="btn-off" size="mini" plain="true" wx:if="{{item.orderStatus == 3}}">已完成</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

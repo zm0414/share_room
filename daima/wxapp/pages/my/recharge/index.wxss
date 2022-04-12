@@ -1,0 +1,131 @@
+/* pages/balance/index.wxss */
+
+page {
+    height: 100%;
+}
+
+.container-balance {
+    padding-top: 120rpx;
+    background: #34c0ee;
+    height: 300rpx;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    width: 750rpx;
+}
+
+.balance {
+    font-size: 58rpx;
+    color: #fff;
+}
+
+.password {
+    font-size: 24rpx;
+    color: #eee;
+    text-align: right;
+    margin-right: 30rpx;
+}
+
+.balance-lable {
+    font-size: 26rpx;
+    color: #f7f7f7;
+}
+
+.content {
+    padding: 20rpx;
+    background: #fff;
+    margin-top: 20rpx;
+}
+
+.content .title {
+    font-weight: bold;
+    font-size: 32rpx;
+}
+
+.recharge-item {
+    width: 30%;
+    float: left;
+}
+
+.sub-title {
+    font-size: 26rpx;
+    color: #888;
+}
+
+.recharge-title {
+    justify-content: space-between;
+    margin-bottom: 20rpx;
+}
+
+.weui-grids {
+    border: none;
+}
+
+.weui-grid {
+    border: none;
+    text-align: center;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+}
+
+.amount-info {
+    border: 1rpx solid #34c0ee;
+    border-radius: 10rpx;
+    width: 200rpx;
+    height: 120rpx;
+    margin: 0 auto;
+    color: #34c0ee;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.amount-text {
+    font-size: 30rpx;
+}
+
+.weui-footer_fixed-bottom button {
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    color: white;
+    background: #ff9801;
+}
+
+.amount-info.active {
+    border: 1rpx solid #ff9801;
+    color: #ff9801;
+}
+
+button::after {
+    border: none;
+}
+
+.amount-text-valid {
+    float: left;
+    position: absolute;
+    font-size: 20rpx;
+    color: #fff;
+    border-radius: 50%;
+    width: 60rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    top: 2rpx;
+    left: 2rpx;
+    background-color: rgb(226, 93, 119);
+}
+
+.container-balance-expire {
+    color: #c52b4c;
+    font-size: 30rpx;
+    font-weight: bold;
+}
+
+.withdraw{
+    background: #ff9801;
+    padding: 6rpx 10rpx;
+    border-radius: 4rpx;
+}
+
+/* .container-balance-expire text {
+    color: #fff;
+    font-size: 30rpx;
+} */

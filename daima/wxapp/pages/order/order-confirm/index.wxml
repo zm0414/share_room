@@ -1,0 +1,32 @@
+<!--pages/confirm-order/index.wxml-->
+<view class="container">
+  <button open-type="share" class="share-img" hidden='true'></button>
+  <form bindsubmit='confirmOrder'>
+
+    <view class='goods-list'>
+      <view class="goods" wx:for="{{roomList}}" wx:key="index">
+        <image mode="scaleToFill" src='{{item.picUrl}}'></image>
+        <view>
+          <view class="goods-title">{{item.roomName}}</view>
+          <view class='goods-item' wx:for-item="seat" wx:for="{{seatList}}">{{seat.seatInfo}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='goods-info' wx:if="{{distributionIndex == 1}}">
+      <view>运费：8元</view>
+    </view>
+
+    <view class='goods-info'>
+      <textarea name="remark" placeholder='备注'></textarea>
+    </view>
+
+    <view class="footer-box">
+
+      <view class='weui-flex foot-buy'>
+        <view class='weui-flex__item total-amount'>￥{{totalAmount}}</view>
+        <button class="now-buy" form-type='submit'>提交订单</button>
+      </view>
+
+    </view>
+  </form>
+</view>

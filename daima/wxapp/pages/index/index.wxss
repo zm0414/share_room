@@ -1,0 +1,105 @@
+/**index.wxss**/
+swiper{
+  height: 300rpx;
+}
+
+.slide-image{
+  width: 750rpx;
+  height: 300rpx;
+}
+
+.category-container{
+  background: #FFFFFF
+}
+
+.weui-grids{
+  border: none;
+}
+
+.weui-grid{
+  border: none;
+}
+
+.weui-grid.category{
+  width: 25%;
+  padding: 20rpx 0rpx;
+}
+
+.goods-container{
+  padding: 5rpx;
+}
+
+.weui-grid.goods{
+  width: 350rpx;
+  background: #FFFFFF;
+  margin: 10rpx;
+  padding: 0rpx;
+}
+
+.weui-grid__icon.goods{
+  width: 350rpx;
+  height: 350rpx;
+}
+
+.weui-grid__label.goods{
+  text-align: left;
+  padding-left: 5rpx;
+}
+
+.weui-grids .label{
+  font-size: 26rpx;
+}
+
+.weui-grids .price{
+  font-size: 26rpx;
+  color: #e64340
+}
+
+.share-img {
+  border-radius: 90rpx;
+  padding: 10rpx;
+  position: fixed;
+  bottom: 50rpx;
+  right: 30rpx;
+  z-index: 999999;
+  background-size: 90rpx 90rpx;
+  background: #ef8203;
+  width: 90rpx;
+  height: 90rpx;
+  box-shadow:0 0 20rpx 0 #888;
+}
+
+.share-img image{
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin: 20rpx;
+  border-left: 6rpx solid #e64340;
+  padding-left: 8rpx;
+}
+
+.kf_button{
+	position: fixed;
+  background-color: rgba(255, 255, 255, 0);
+  border: 0px;
+  height: 100rpx;
+  right: 10rpx;
+  bottom: 200rpx;
+  z-index: 99991213;
+}
+.kf_button::after{
+  border: 0px;
+}
+.kf_image{
+  width: 100rpx;
+  font-size: 24rpx;
+  height: 100rpx;
+  color: #fff;
+  font-weight: 700;
+  line-height: 100rpx;
+	border-radius: 50%;
+}

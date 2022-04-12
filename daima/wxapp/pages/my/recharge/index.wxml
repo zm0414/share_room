@@ -1,0 +1,48 @@
+<!--pages/recharge/index.wxml-->
+<view class='container'>
+  <view class="container-balance">
+    <view class="balance">￥{{balance}}</view>
+    <view class="balance-lable">当前余额 <label class="withdraw" bindtap="withdraw">提现</label></view>
+    
+  </view>
+
+  <view class='content'>
+    <view class='weui-flex recharge-title'>
+      <view class='title'>
+        充值活动
+      </view>
+      <view class='sub-title' bindtap='rechargeRecord' hidden='true'>
+        充值记录
+      </view>
+    </view>
+
+    <view class='recharge'>
+      <view class="weui-grids">
+        <block wx:for="{{rechargeList}}" wx:key="index">
+          <view class="weui-grid amount" data-index='{{index}}' data-amount='{{item.amount}}' data-amountgive='{{item.amountGive}}' bindtap='tabAmount'>
+            <view class='amount-info {{activeIndex == index?"active":""}}'>
+              <view class="amount-text">{{item.amount}}元</view>
+              <view class="amount-text">送{{item.amountGive}}元</view>
+            </view>
+          </view>
+        </block>
+
+        <!-- <view class="weui-grid amount" bindtap='buyOther'>
+          <view class='amount-info'>
+            <view class="amount-text">其他金额</view>
+          </view>
+        </view> -->
+        <view class="weui-grid amount" hidden="true" bindtap='buyCard'>
+          <view class='amount-info'>
+            <view class="amount-text">充值卡</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='weui-footer weui-footer_fixed-bottom'>
+    <button bindtap='buy'>立即充值</button>
+  </view>
+
+</view>

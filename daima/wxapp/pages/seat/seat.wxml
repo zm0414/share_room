@@ -1,0 +1,27 @@
+<!--pages/seat/seat.wxml-->
+<view class="container">
+  <view class="room">
+    <view class="store-name">{{room.store.storeName}}</view>
+    <view class="room-name">{{room.roomName}}</view>
+  </view>
+  <scroll-view class="scroll-view_H" scroll-x>
+    <view class='appoint-time' data-date="{{item.date}}" wx:for="{{dates}}" wx:key="*this" bindtap='tabDate'>
+      <view class='info {{item.date == date?"checked":""}}'>
+        <view class='week'>{{item.week}}</view>
+        <view class="day">{{item.day}}</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view>
+    <view class="weui-grids">
+      <block wx:for="{{seatList}}" wx:key="index">
+        <view class="weui-grid category">
+          <view class="seat" bindtap="selSeat">
+            {{item.seatNo}}
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wfuhui.modules.seat.dao.RoomDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.wfuhui.modules.seat.entity.RoomEntity" id="roomMap">
+        <result property="id" column="id"/>
+        <result property="roomName" column="room_name"/>
+        <result property="price" column="price"/>
+        <result property="picUrl" column="pic_url"/>
+        <result property="describe" column="describe"/>
+        <result property="createTime" column="create_time"/>
+        <result property="status" column="status"/>
+        <result property="barcode" column="barcode"/>
+        <result property="stock" column="stock"/>
+        <association property="store" javaType="com.wfuhui.modules.store.entity.StoreEntity">
+        	<result property="storeName" column="store_name"/>
+        </association>
+    </resultMap>
+
+	<select id="queryObject" resultType="com.wfuhui.modules.seat.entity.RoomEntity">
+		select * from seat_room where id = #{value}
+	</select>
+
+	<select id="queryList" resultMap="roomMap">
+		select g.*, s.store_name from seat_room g 
+		left join sys_store s on s.id = g.store_id
+		<where>
+			<if test="categoryId != null and categoryId != -1">
+				c.id = #{categoryId}
+			</if>
+			<if test="roomName != null and roomName != ''">
+				and g.room_name like '%${roomName}%'
+			</if>
+			<if test="storeId != null and storeId != ''">
+				and g.store_id = #{storeId}
+			</if>
+		</where>
+		
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from seat_room 
+		<where>
+			<if test="categoryId != null and categoryId != -1">
+				category_id = #{categoryId}
+			</if>
+			<if test="roomName != null and roomName != ''">
+				and room_name like '%${roomName}%'
+			</if>
+		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.wfuhui.modules.seat.entity.RoomEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into seat_room
+		(
+			`room_name`, 
+			`category_id`, 
+			`price`, 
+			`pic_url`, 
+			`describe`, 
+			`status`, 
+			`store_id`, 
+			`create_time`
+		)
+		values
+		(
+			#{roomName}, 
+			#{categoryId}, 
+			#{price}, 
+			#{picUrl}, 
+			#{describe}, 
+			#{status}, 
+			#{storeId}, 
+			#{createTime}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.wfuhui.modules.seat.entity.RoomEntity">
+		update seat_room 
+		<set>
+			<if test="roomName != null">`room_name` = #{roomName}, </if>
+			<if test="categoryId != null">`category_id` = #{categoryId}, </if>
+			<if test="price != null">`price` = #{price}, </if>
+			<if test="picUrl != null">`pic_url` = #{picUrl}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="storeId != null">`store_id` = #{storeId}, </if>
+			<if test="describe != null">`describe` = #{describe}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from seat_room where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from seat_room where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<update id="updateStatus">
+		update seat_room set status = #{status} where id in 
+		<foreach item="id" collection="ids" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</update>
+	
+	<select id="queryByIds" resultType="com.wfuhui.modules.seat.entity.RoomEntity">
+		select * from seat_room where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</select>
+	
+	<update id="delStock">
+		update seat_room set stock = stock - #{stock} where id = #{id}
+	</update>
+	
+	<update id="addStock">
+		update seat_room set stock = stock + #{stock} where id = #{id}
+	</update>
+	
+
+</mapper>

@@ -1,0 +1,9 @@
+/* pages/order/order-detail/index.wxss */
+.buy-num{
+  color: black;
+  font-size: 32rpx
+}
+
+.goods-name{
+  margin-bottom: 30rpx;
+}
