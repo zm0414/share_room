@@ -22,7 +22,6 @@ import java.util.Map;
  * @author evanluns
  * @email 1197827306@qq.com
  */
-
 @Configuration
 public class ShiroConfig {
 

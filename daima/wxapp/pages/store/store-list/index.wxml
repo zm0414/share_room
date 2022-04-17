@@ -1,6 +1,8 @@
 <!--pages/store/store-list/index.wxml-->
 <view class="container">
+<!-- for循环 读取自习室列表 -->
   <view class="weui-flex list-item" wx:for="{{storeList}}" data-id="{{item.id}}" bindtap="detail">
+   <!-- 展示自习室图片 自习室名称 自习室地址 -->
     <image class="logo" src="{{item.picUrl}}"></image>
     <view>
       <view class="title">{{item.storeName}}</view>

@@ -88,12 +88,14 @@ Page({
       }
     });
   },
-
+// 展示订单列表方法
   getOrderList: function () {
     var that = this;
     wx.request({
+      // 请求路径
       url: app.globalData.domain + '/api/order/list',
       data: {
+        // 数据：token  订单状态 支付状态 （0.全部 1.待支付 2.使用中 3.已完成）
         token: app.globalData.token,
         storeId: app.globalData.storeId,
         status: that.data.statuses,

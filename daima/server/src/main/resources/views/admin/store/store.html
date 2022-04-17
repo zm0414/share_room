@@ -83,6 +83,27 @@
 			      <input type="text" class="form-control" v-model="store.address" placeholder="地点" />
 			    </div>
 			</div>
+
+			<div class="form-group">
+				<div class="col-sm-2 control-label">打开地图</div>
+				<div class="col-sm-7">
+					<a href="https://lbs.qq.com/getPoint/" target="_blank">选择地点</a>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-2 control-label">请输入经度</div>
+				<div class="col-sm-7">
+					<input type="text" class="form-control" v-model="store.lng" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-2 control-label">请输入纬度</div>
+				<div class="col-sm-7">
+					<input type="text" class="form-control" v-model="store.lat" />
+				</div>
+			</div>
 			
 			<div class="form-group" hidden="true">
 				<div class="col-sm-2 control-label">坐标</div>

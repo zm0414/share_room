@@ -53,7 +53,9 @@
 			`sort`, 
 			`pic_url`, 
 			`status`, 
-			`address`, 
+			`address`,
+			`lng`,
+			`lat`,
 			`create_time`
 		)
 		values
@@ -62,7 +64,9 @@
 			#{sort}, 
 			#{picUrl}, 
 			#{status}, 
-			#{address}, 
+			#{address},
+			#{lng},
+			#{lat},
 			#{createTime}
 		)
 	</insert>

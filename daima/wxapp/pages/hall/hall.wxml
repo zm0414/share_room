@@ -15,13 +15,16 @@
   </view>
   <movable-area class="movable-area" scale-area="true">
     <view class='hallTitle'>
+    <!-- 插值解析自习室名称 -->
       <text>{{room.roomName}}</text>
     </view>
     <movable-view id='movable-view' class="movable-view" bindtap='aa' direction="all" bindchange="onChange" bindscale="onScale" scale="true" scale-min="0.5" scale-max="2" scale-value="1" inertia="true">
       <view class='downContainer' id='seatView'>
         <view class='seatView'>
+        <!-- for绑定事件读取座位矩阵，并进行渲染 -->
           <view class='x' wx:for="{{seat}}" wx:for-index="idx">
             <view class='y' wx:for="{{item}}" wx:for-index="idy">
+            <!-- 绑定事件selectSeat  -->
               <image class="img" bind:tap='selectSeat' src='{{item.iconSrc}}' data-index='{{idx}}' data-ix='{{idy}}'>
               </image>
             </view>
@@ -39,6 +42,7 @@
       <image class='btnImg' src='/images/icon/xxx.png'></image>
     </button>
   </view>
+  <!-- 绑定事件，进行提交选座 -->
   <view class='submit' bind:tap="submit">
     <text>{{totalMoney}} 确认选座</text>
   </view>

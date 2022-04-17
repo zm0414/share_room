@@ -37,10 +37,11 @@ Page({
       }
     })
   },
-
+// 支付方法
   payOrder: function () {
     var that = this;
     wx.request({
+      // 请求路径 
       url: app.globalData.domain + '/api/order/pay',
       header: {
         token: app.globalData.token
@@ -48,6 +49,7 @@ Page({
       data: {
         id: that.data.id
       },
+      // 如果成功 返回支付成功，并跳转页面
       success: function (res) {
         if(res.data.code == 0){
           wx.showModal({
@@ -60,7 +62,6 @@ Page({
               })
             }
           })
-          
         }else{
           wx.showModal({
             title: '提示',

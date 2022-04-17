@@ -5,6 +5,7 @@ Page({
     useTime: 0,
     surplusTime: 0,
     isSignIn: false,
+    // 入口处定义三个操作
     list: [
       { "name": "我的信息", "url": "/pages/my/info/index" },
       { "name": "我的余额", "url": "/pages/my/recharge/index" },
@@ -16,7 +17,7 @@ Page({
 
   },
   jubao(){
-    console.log("举报跳转只人工客服")
+    console.log("举报跳转至人工客服")
   },
   tabNav: function(e){
     var url = e.currentTarget.dataset.url;

@@ -74,15 +74,20 @@ Page({
     }
 
     wx.showLoading();
+    // 请求
     wx.request({
       url: app.globalData.domain + '/api/member/recharge',
+      // 获取用户token，进去请求验证
       header: {
         token: app.globalData.token
       },
+      // GET请求方法
       method: "GET",
+      // 数据中余额是原本的余额加上提现金额
       data: {
         amount: amount + amountGive
       },
+      // res的数据为0  充值成功
       success: (res) => {
         if (res.data.code == 0) {
           wx.showToast({
